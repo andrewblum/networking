@@ -53,8 +53,15 @@
 
 
 // exercise 6 
-// process.stdin.on('data', stuff => {
+// process.stdin.on('data', stuff => {k
 //   console.log(JSON.stringify(new Uint8Array(stuff)))
 // })
 
 // exercise 7 
+
+const num = process.argv[2]
+const arr1 = new Uint32Array(1)
+arr1[0] = num
+const arr2 = new Uint16Array(arr1.buffer)
+console.log(JSON.stringify(arr2))
+
