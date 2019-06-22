@@ -39,6 +39,16 @@
 
 // exercise 5 
 
+let bufs = []
+process.stdin.on('data', stuff => {
+  // let piece = process.stdin.read()
+  // if (piece !== null) bufs.push(piece)
+  bufs.push(stuff)
+})
+
+process.stdin.on('end', () => {
+  console.log(Buffer.concat(bufs))
+})
 
 
 
