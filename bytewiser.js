@@ -39,16 +39,22 @@
 
 // exercise 5 
 
-let bufs = []
-process.stdin.on('data', stuff => {
-  // let piece = process.stdin.read()
-  // if (piece !== null) bufs.push(piece)
-  bufs.push(stuff)
-})
+// let bufs = []
+// process.stdin.on('data', stuff => {
+//   // let piece = process.stdin.read()
+//   // if (piece !== null) bufs.push(piece)
+//   bufs.push(stuff)
+// })
 
-process.stdin.on('end', () => {
-  console.log(Buffer.concat(bufs))
-})
+// process.stdin.on('end', () => {
+//   console.log(Buffer.concat(bufs))
+// })
 
 
 
+// exercise 6 
+// process.stdin.on('data', stuff => {
+//   console.log(JSON.stringify(new Uint8Array(stuff)))
+// })
+
+// exercise 7 
