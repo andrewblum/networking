@@ -8,13 +8,13 @@ const DNSHEADER = [['ID', 16], ['QR', 1], ['OPCODE', 4], ['AA', 1],
 const DNSQUESTION = [['QNAME', '?'], ['QTYPE', 16], ['QCLASS', 16]];
 
 server.on('message', (msg, rinfo) => {
-  console.log('got message')
+  console.log('Got a message')
   parseDnsResponse(msg);
   console.log(rinfo)
 });
 
 server.on('listening', () => {
-  console.log('im awake')
+  console.log(`I'm awake`)
 });
 
 server.bind(1153)
@@ -24,7 +24,7 @@ let msg = Buffer.from(hex, 'hex');
 let length = msg.length // calculate length of message in byte as an int
 
 server.send(msg, 0, length, 53, '8.8.8.8', () => {
-  console.log('i sent it')
+  console.log('DNS request sent')
 })
 
 function parseDnsResponse(msg) {
