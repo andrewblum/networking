@@ -1,17 +1,5 @@
 const net = require('net');
-const dns = require('dns');
 const CACHE = {};
-
-// ***** CLIENT ******
-
-const client = new net.Socket();
-
-client.on('close', () => {
-  console.log('connection was closed')
-})
-
-
-
 
 // ***** CACHE SERVER *****
 
@@ -25,23 +13,22 @@ const server = net.createServer((socket) => {
 server.listen(5000, '127.0.0.1')
 
 function parseRequest(request, socket) {
-  console.log('socket data obtained', request)
   if (!requestInCache(request)) {
-    const response = httpRequest(request)
-    //socket.write(response)
+    httpRequest(request, socket)
   } else {
     socket.write(CACHE[request])
   }
 }
 
-function httpRequest(request) {
+function httpRequest(request, socket) {
+  const client = new net.Socket();
+  
   client.connect(5001, '127.0.0.1', () => {
-    console.log('client connected')
     client.write(request)
   });
 
   client.on('data', (data) => {
-    console.log('client got response:', data);
+    socket.write(data)
   })  
 }
 
